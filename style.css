@@ -1,4 +1,5 @@
 body {
     background-color: white;
     color: black;
+    gridTemplateColumns: repeat(16, 1fr);
 }

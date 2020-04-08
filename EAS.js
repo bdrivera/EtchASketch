@@ -5,17 +5,18 @@ const etchCont = $('#etchContainer');
 var boxSquareCount = 16;
 var etchContWidth = 900;
 var etchDivs = new Array();
+var effectId = 0;
 
 /* Runtime Start*/
-setUpCSS(etchCont);
-drawBoxes(etchCont);
+setUpCSS();
+drawBoxes();
+addEventListeners();
 
 /* Runtime End */
 
 
 /**
  * Establishes basic CSS 
- * 
  */
 function setUpCSS() {
     etchCont.style.display = "flex";
@@ -27,8 +28,7 @@ function setUpCSS() {
 }
 
 /**
- * Draws div boxes and applies eventListener
- * 
+ * Draws div boxes
  */
 function drawBoxes() {
 
@@ -41,19 +41,40 @@ function drawBoxes() {
         etchDivs[i].style.height = getEtchDivSide() + "px";
         etchDivs[i].style.width = getEtchDivSide() + "px";
         etchCont.appendChild(etchDivs[i]);
-        console.log(getEtchDivSide());
-
     }
     
 }
 
+/**
+ * Adds event listeners to all div boxes in the etch-a-sketch
+ */
+function addEventListeners() {
+    for(var i = 0; i < (boxSquareCount * boxSquareCount); i++) {
+        etchDivs[i].addEventListener('mouseenter',
+            function(e){
+                eventEffect(e.target);
+            });
+    }
+}
+
+/**
+ * Uses provided paramater to execute an event
+ * @param {*} d 
+ */
+function eventEffect(d) {
+    console.log("triggered: " + d.textContent);
+}
+
+/**
+ * Returns the size for a etch div side based on
+ * the size of the container and etch div count
+ */
 function getEtchDivSide() {
     return (etchContWidth / boxSquareCount);
 }
 
 /**
  * Function that queries an inquiry and returns the element.
- * 
  * @param {*} n Element name  to be queried and returned
  */
 function $(n) { return document.querySelector(n); }
