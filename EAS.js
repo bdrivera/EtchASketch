@@ -1,7 +1,8 @@
 'use strict';
 
 /* Global Variable Block */
-const etchCont = $('#etchContainer');
+const etchCont = $('#etchContainer');//constant for board div
+const etchButt = $('#etchButtonContainer');//constant for buttons div
 var boxSquareCount = 16;
 var etchContWidth = 900;
 var etchDivs = new Array();
@@ -10,15 +11,16 @@ var activeEffectId = 0;
 /* Runtime Start*/
 setUpCSS();
 drawBoxes();
-addEventListeners();
+addBoardListeners();
 
 /* Runtime End */
 
 
 /**
- * Establishes basic CSS 
+ * Establishes basic CSS
  */
 function setUpCSS() {
+    //CSS for board
     etchCont.style.display = "flex";
     etchCont.style.flexWrap = "wrap";
     etchCont.style.margin = "0px";
@@ -28,7 +30,14 @@ function setUpCSS() {
 }
 
 /**
- * Draws div boxes
+ * Draws buttons to manipulate board functions
+ */
+function drawButtons() {
+
+}
+
+/**
+ * Draws div boxes on the board
  */
 function drawBoxes() {
 
@@ -46,9 +55,9 @@ function drawBoxes() {
 }
 
 /**
- * Adds event listeners to all div boxes in the etch-a-sketch
+ * Adds event listeners to all div boxes in the etch-a-sketch board
  */
-function addEventListeners() {
+function addBoardListeners() {
     for(var i = 0; i < (boxSquareCount * boxSquareCount); i++) {
         etchDivs[i].addEventListener('mouseenter',
             function(e){
