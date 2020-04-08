@@ -5,7 +5,7 @@ const etchCont = $('#etchContainer');
 var boxSquareCount = 16;
 var etchContWidth = 900;
 var etchDivs = new Array();
-var effectId = 0;
+var activeEffectId = 0;
 
 /* Runtime Start*/
 setUpCSS();
@@ -63,6 +63,9 @@ function addEventListeners() {
  */
 function eventEffect(d) {
     console.log("triggered: " + d.textContent);
+    if(activeEffectId == 0) {
+        d.style.backgroundColor = "red";
+    }
 }
 
 /**
