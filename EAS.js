@@ -4,7 +4,7 @@
 const etchCont = $('#etchContainer'); //constant for board div
 const etchButt = $('#etchButtonContainer'); //constant for buttons div
 var boxSquareCount = 16; //length of one side of the board in blocks
-var etchContWidth = 900; //width in pixels of the board container
+var etchContWidth = 700; //width in pixels of the board container
 var etchDivs = new Array(); //array holding board blocks objects
 
 var neutralColor = "black";
@@ -37,7 +37,6 @@ function setUpCSS() {
     etchCont.style.flexWrap = "wrap";
     etchCont.style.margin = "0px";
     etchCont.style.textAlign = "center";
-    etchCont.style.border = "1px";
     etchCont.style.width = etchContWidth + "px";
     etchCont.style.height = etchContWidth + "px";
 }
@@ -57,7 +56,16 @@ function drawBoxes() {
         etchDivs[i].style.width = getEtchDivSide() + "px";
         etchCont.appendChild(etchDivs[i]);
     }
-    
+    console.log("Boxes drawn");
+}
+
+/**
+ * Removes div boxes to prepare to redraw
+ */
+function removeBoxes() {
+    for(var i = 0; i < (boxSquareCount * boxSquareCount); i++) {
+        etchCont.removeChild(etchDivs[i]);
+    }
 }
 
 /**
@@ -106,6 +114,12 @@ function buttonEvent(b) {
         return;
         case "buttErase": //Erase
             activeEffectId = 1;
+        return;
+        case "buttResize": //Resize
+            removeBoxes();
+            boxSquareCount = parseInt($("#inputResize").value);
+            drawBoxes();
+            addBoardListeners();
         return;
     }
 }
