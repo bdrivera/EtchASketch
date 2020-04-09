@@ -50,7 +50,6 @@ function drawBoxes() {
     for(var i = 0; i < (boxSquareCount * boxSquareCount); i++) {
         etchDivs[i] = document.createElement('div');
         etchDivs[i].classList.add('etchBox' + i);
-        etchDivs[i].textContent = i;
         etchDivs[i].style.backgroundColor = neutralColor;
         etchDivs[i].style.opacity = "1";
         etchDivs[i].style.color = "white";
@@ -92,7 +91,6 @@ function addBoardListeners() {
  * @param {*} b target button
  */
 function buttonEvent(b) {
-    console.log(b.value);
     switch(b.value) {
         case 0: case "0": //Clear
             clearBoard();
@@ -116,8 +114,7 @@ function buttonEvent(b) {
  * Uses provided paramater to execute an event
  * @param {*} d target div
  */
-function boardEvent(d) {//TODO
-    console.log("triggered: " + d.textContent);
+function boardEvent(d) {
     switch(activeEffectId) {
         case 0: //Draw
             d.style.backgroundColor = offsetColor;
@@ -128,10 +125,7 @@ function boardEvent(d) {//TODO
             d.style.opacity = 1;
         return;
         case 2: //Gradient
-            console.log(d.style.opacity);
-            console.log(parseFloat(d.style.opacity));
             d.style.opacity = (parseFloat(d.style.opacity) - .2) + "";
-            console.log((parseFloat(d.style.opacity) - .1) + "");
         return;
         case 3: //Random
 
@@ -139,6 +133,9 @@ function boardEvent(d) {//TODO
     }
 }
 
+/**
+ * Clears the board back to it's neutral color
+ */
 function clearBoard() {
     for(var i = 0; i < (boxSquareCount*boxSquareCount); i++) {
         etchDivs[i].style.backgroundColor = neutralColor;// neutralColor;
