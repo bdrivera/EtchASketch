@@ -12,12 +12,12 @@ var offsetColor = "white";
 
 /*
  * The effect to be applied when hovering over a block.
- *   0=Black
- *   1=White
+ *   0=Draw
+ *   1=Erase
  *   2=Gradient
  *   3=Random
  */
-var activeEffectId = 1;
+var activeEffectId = 0;
 
 /* Runtime Start*/
 setUpCSS();
@@ -50,7 +50,7 @@ function drawBoxes() {
         etchDivs[i] = document.createElement('div');
         etchDivs[i].classList.add('etchBox' + i);
         etchDivs[i].textContent = i;
-        etchDivs[i].style.backgroundColor = "black";
+        etchDivs[i].style.backgroundColor = neutralColor;
         etchDivs[i].style.color = "white";
         etchDivs[i].style.height = getEtchDivSide() + "px";
         etchDivs[i].style.width = getEtchDivSide() + "px";
@@ -96,7 +96,7 @@ function buttonEvent(b) {
             clearBoard();
         return;
         case 1: case "1": //Draw
-
+            activeEffectId = 0;
         return;
         case 2 : case "2": //Gradient
 
@@ -105,7 +105,7 @@ function buttonEvent(b) {
 
         return;
         case 4: case "4": //Erase
-
+            activeEffectId = 1;
         return;
     }
 }
@@ -117,11 +117,11 @@ function buttonEvent(b) {
 function boardEvent(d) {//TODO
     console.log("triggered: " + d.textContent);
     switch(activeEffectId) {
-        case 0: //Black
-            d.style.backgroundColor = "black";
+        case 0: //Draw
+            d.style.backgroundColor = offsetColor;
         return;
-        case 1: //White
-            d.style.backgroundColor = "white";
+        case 1: //Erase
+            d.style.backgroundColor = neutralColor;
         return;
         case 2: //Gradient
 
@@ -134,7 +134,7 @@ function boardEvent(d) {//TODO
 
 function clearBoard() {
     for(var i = 0; i < (boxSquareCount*boxSquareCount); i++) {
-        etchDivs[i].style.backgroundColor = "black";// neutralColor;
+        etchDivs[i].style.backgroundColor = neutralColor;// neutralColor;
         etchCont.appendChild(etchDivs[i]);
     }
 }
