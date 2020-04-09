@@ -7,6 +7,9 @@ var boxSquareCount = 16; //length of one side of the board in blocks
 var etchContWidth = 900; //width in pixels of the board container
 var etchDivs = new Array(); //array holding board blocks objects
 
+var neutralColor = "black";
+var offsetColor = "white";
+
 /*
  * The effect to be applied when hovering over a block.
  *   0=Black
@@ -87,20 +90,21 @@ function addBoardListeners() {
  * @param {*} b target button
  */
 function buttonEvent(b) {
+    console.log(b.value);
     switch(b.value) {
-        case 0: //Clear
+        case 0: case "0": //Clear
+            clearBoard();
+        return;
+        case 1: case "1": //Draw
 
         return;
-        case 1: //Draw
+        case 2 : case "2": //Gradient
 
         return;
-        case 2: //Gradient
+        case 3: case "3": //Random
 
         return;
-        case 3: //Random
-
-        return;
-        case 4: //Erase
+        case 4: case "4": //Erase
 
         return;
     }
@@ -125,6 +129,13 @@ function boardEvent(d) {//TODO
         case 3: //Random
 
         return;
+    }
+}
+
+function clearBoard() {
+    for(var i = 0; i < (boxSquareCount*boxSquareCount); i++) {
+        etchDivs[i].style.backgroundColor = "black";// neutralColor;
+        etchCont.appendChild(etchDivs[i]);
     }
 }
 
