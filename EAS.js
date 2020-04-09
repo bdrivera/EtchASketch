@@ -35,7 +35,7 @@ function setUpCSS() {
     //CSS for board
     etchCont.style.display = "flex";
     etchCont.style.flexWrap = "wrap";
-    etchCont.style.margin = "0px";
+    etchCont.style.margin = "0 auto";
     etchCont.style.textAlign = "center";
     etchCont.style.width = etchContWidth + "px";
     etchCont.style.height = etchContWidth + "px";
@@ -52,11 +52,10 @@ function drawBoxes() {
         etchDivs[i].style.backgroundColor = neutralColor;
         etchDivs[i].style.opacity = "1";
         etchDivs[i].style.color = "white";
-        etchDivs[i].style.height = getEtchDivSide() + "px";
-        etchDivs[i].style.width = getEtchDivSide() + "px";
+        etchDivs[i].style.height = getEtchDivSide();
+        etchDivs[i].style.width = getEtchDivSide();
         etchCont.appendChild(etchDivs[i]);
     }
-    console.log("Boxes drawn");
 }
 
 /**
@@ -168,11 +167,10 @@ function getRandomByte() {
 }
 
 /**
- * Returns the size for a etch div side based on
- * the size of the container and etch div count
+ * Returns the proper side length for board blocks using CSS calc() method
  */
 function getEtchDivSide() {
-    return (etchContWidth / boxSquareCount);
+    return "calc(100% / " + boxSquareCount + ")";
 }
 
 /**
