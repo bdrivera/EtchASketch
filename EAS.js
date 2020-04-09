@@ -91,20 +91,20 @@ function addBoardListeners() {
  * @param {*} b target button
  */
 function buttonEvent(b) {
-    switch(b.value) {
-        case 0: case "0": //Clear
+    switch(b.id) {
+        case "buttClear": //Clear
             clearBoard();
         return;
-        case 1: case "1": //Draw
+        case "buttDraw": //Draw
             activeEffectId = 0;
         return;
-        case 2 : case "2": //Gradient
+        case "buttGrad": //Gradient
             activeEffectId = 2;
         return;
-        case 3: case "3": //Random
+        case "buttRan": //Random
             activeEffectId = 3;
         return;
-        case 4: case "4": //Erase
+        case "buttErase": //Erase
             activeEffectId = 1;
         return;
     }
