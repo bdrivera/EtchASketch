@@ -128,7 +128,10 @@ function boardEvent(d) {
             d.style.opacity = (parseFloat(d.style.opacity) - .2) + "";
         return;
         case 3: //Random
-
+            d.style.backgroundColor = "rgb(" +
+                getRandomByte() + ", " + getRandomByte() + ", " + 
+                    getRandomByte() + ")";
+            d.style.opacity = 1;
         return;
     }
 }
@@ -141,6 +144,13 @@ function clearBoard() {
         etchDivs[i].style.backgroundColor = neutralColor;// neutralColor;
         etchDivs[i].style.opacity = 1;
     }
+}
+
+/**
+ * Returns a value between 0 and 255
+ */
+function getRandomByte() {
+    return Math.floor(Math.random() * 255);
 }
 
 /**
