@@ -37,6 +37,7 @@ function setUpCSS() {
     etchCont.style.flexWrap = "wrap";
     etchCont.style.margin = "0px";
     etchCont.style.textAlign = "center";
+    etchCont.style.border = "1px";
     etchCont.style.width = etchContWidth + "px";
     etchCont.style.height = etchContWidth + "px";
 }
@@ -51,6 +52,7 @@ function drawBoxes() {
         etchDivs[i].classList.add('etchBox' + i);
         etchDivs[i].textContent = i;
         etchDivs[i].style.backgroundColor = neutralColor;
+        etchDivs[i].style.opacity = "1";
         etchDivs[i].style.color = "white";
         etchDivs[i].style.height = getEtchDivSide() + "px";
         etchDivs[i].style.width = getEtchDivSide() + "px";
@@ -99,10 +101,10 @@ function buttonEvent(b) {
             activeEffectId = 0;
         return;
         case 2 : case "2": //Gradient
-
+            activeEffectId = 2;
         return;
         case 3: case "3": //Random
-
+            activeEffectId = 3;
         return;
         case 4: case "4": //Erase
             activeEffectId = 1;
@@ -119,12 +121,17 @@ function boardEvent(d) {//TODO
     switch(activeEffectId) {
         case 0: //Draw
             d.style.backgroundColor = offsetColor;
+            d.style.opacity = 1;
         return;
         case 1: //Erase
             d.style.backgroundColor = neutralColor;
+            d.style.opacity = 1;
         return;
         case 2: //Gradient
-
+            console.log(d.style.opacity);
+            console.log(parseFloat(d.style.opacity));
+            d.style.opacity = (parseFloat(d.style.opacity) - .2) + "";
+            console.log((parseFloat(d.style.opacity) - .1) + "");
         return;
         case 3: //Random
 
@@ -135,7 +142,7 @@ function boardEvent(d) {//TODO
 function clearBoard() {
     for(var i = 0; i < (boxSquareCount*boxSquareCount); i++) {
         etchDivs[i].style.backgroundColor = neutralColor;// neutralColor;
-        etchCont.appendChild(etchDivs[i]);
+        etchDivs[i].style.opacity = 1;
     }
 }
 
